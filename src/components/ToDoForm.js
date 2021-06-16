@@ -1,12 +1,21 @@
+import React, {useState, useEffect} from 'react';
+
 const ToDoForm = (props) => {
-   
+  const [inputText, setInputText] = useState('');
+
     return (
         <div>
-            <input type='text'></input>
+            
+            <input type='text' value= {inputText} onChange={(event) => {
+                setInputText(event.target.value)//easy to debug
+            }}></input>
             <div>
                 <button
                     type='submit'
-                    onClick={props.addListproperty}>Add new list</button>
+                    onClick={() => {
+                        props.addListproperty(inputText)
+                        setInputText('');
+                    }}>Add new list</button>
             </div>
         </div>
     )

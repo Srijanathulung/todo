@@ -1,35 +1,53 @@
 import './App.css';
 import ToDoList from './components/ToDoList';
 import ToDoForm from './components/ToDoForm';
+import React, {useState, useEffect} from 'react';
 // import React, {useState} from 'react';
 
 const dummy_list = [
-  { text: 'do wash clothes', id: '1' },
-  { text: 'do meditate', id: '2' },
-  { text: 'do exercise', id:'3'}
+  { text: 'do wash clothes', id: 1 },
+  { text: 'do meditate', id: 2 },
+  { text: 'do exercise', id:3}
 ]
 
-const addListHandler = () => {
-  console.log('add function is working');
-}
 
 function App() {
+
+  // const [inputText, setInputText] = useState('');
+    const [toDoArray, setToDoArray] = useState([]);
+
+  useEffect(() => {
+    setToDoArray(
+      dummy_list
+    )
+  },[])
+
+
+  // const addListHandler = (event) => {
+  const addListHandler = (inputText) => {
+    let mockToDoArray = [...toDoArray];
+    let lastItemId=mockToDoArray[toDoArray.length-1].id
+    let item = {
+      text: inputText, id:lastItemId+1
+    }
+    mockToDoArray.push(item);
+    setToDoArray(mockToDoArray)
+  // setInputText(event.target.value);
+  // console.log('add function is working');
+}
+
   return (
     <div className="App">
       <h1>Lets practise react</h1>
-      <ToDoForm addListproperty={addListHandler}/>
+      <ToDoForm addListproperty={(inputText)=>addListHandler(inputText)}/>
 
-      <ToDoList
-        textProperty={dummy_list[0].text}
-        idProperty={dummy_list[0].id}
-      />
-      <ToDoList
-        textProperty={dummy_list[1].text}
-        idProperty={dummy_list[1].id}
-      />
-      <ToDoList
-        textProperty={dummy_list[2].text}
-        idProperty={dummy_list[2].id}/>
+      {toDoArray.map((item) =>
+        <ToDoList
+          key={item.id}
+        textProperty={item.text}
+        idProperty={item.id}/>
+    )}
+      
     </div>
   );
 }
