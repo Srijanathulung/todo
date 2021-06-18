@@ -1,6 +1,7 @@
 import './App.css';
 import ToDoList from './components/ToDoList';
 import ToDoForm from './components/ToDoForm';
+import React,{useState,useEffect} from 'react';
 
  const dummy_list = [
   { text: 'to meditate', id: 1 },
@@ -11,7 +12,17 @@ import ToDoForm from './components/ToDoForm';
 
 function App() {
 
-  const addListHandler = () => {
+  const [toDoArray, setToDoArray] = useState([])
+  
+  useEffect(() =>
+  setToDoArray(dummy_list),[])
+
+  const addListHandler = (inputText) => {
+    let mockToDoArray = [...toDoArray]
+    let lastItemId = mockToDoArray[toDoArray.length - 1].id;
+    let item = { text: inputText, id: lastItemId + 1 }
+    mockToDoArray.push(item);
+    setToDoArray(mockToDoArray);
     console.log('function is working')
   }
   
@@ -19,8 +30,8 @@ function App() {
   return (
     <div className="App">
       <h1>Lets practise react</h1>
-      <ToDoForm onAddList={()=>addListHandler() }/>
-      {dummy_list.map((item) =>
+      <ToDoForm onAddList={(inputText)=>addListHandler(inputText) }/>
+      {toDoArray.map((item) =>
         <ToDoList
           key={item.id}
         textProperty={item.text}
