@@ -29,7 +29,6 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Lets practise react</h1>
       <ToDoForm onAddList={(inputText)=>addListHandler(inputText) }/>
       {toDoArray.map((item) =>
         <ToDoList
