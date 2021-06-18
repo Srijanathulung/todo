@@ -1,11 +1,4 @@
 const ToDoList = (props) => {
-
-
-    return (
-        <div>
-            <div>{props.textProperty}</div>
-        </div>
-    )
-      
+    return <div>{props.textProperty}</div>
 }
 export default ToDoList;
