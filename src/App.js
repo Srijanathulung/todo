@@ -29,6 +29,7 @@ function App() {
 
   return (
     <div className="App">
+     <label>ToDo List</label>
       <ToDoForm onAddList={(inputText)=>addListHandler(inputText) }/>
       {toDoArray.map((item) =>
         <ToDoList
