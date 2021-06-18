@@ -1,5 +1,6 @@
 import './App.css';
 import ToDoList from './components/ToDoList';
+import ToDoForm from './components/ToDoForm';
 
  const dummy_list = [
   { text: 'to meditate', id: 1 },
@@ -12,6 +13,7 @@ function App() {
   return (
     <div className="App">
       <h1>Lets practise react</h1>
+      <ToDoForm/>
       {dummy_list.map((item) =>
       <ToDoList
         textProperty={item.text}
