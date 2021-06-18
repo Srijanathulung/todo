@@ -10,12 +10,19 @@ import ToDoForm from './components/ToDoForm';
 
 
 function App() {
+
+  const addListHandler = () => {
+    console.log('function is working')
+  }
+  
+
   return (
     <div className="App">
       <h1>Lets practise react</h1>
-      <ToDoForm/>
+      <ToDoForm onAddList={()=>addListHandler() }/>
       {dummy_list.map((item) =>
-      <ToDoList
+        <ToDoList
+          key={item.id}
         textProperty={item.text}
         idProperty={item.id}
       />
