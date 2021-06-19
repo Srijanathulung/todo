@@ -13,9 +13,21 @@ import React,{useState,useEffect} from 'react';
 function App() {
 
   const [toDoArray, setToDoArray] = useState([])
+  const [changingVar,setChangingVar]=useState('')
   
   useEffect(() =>
-  setToDoArray(dummy_list),[])
+    setToDoArray(dummy_list)
+    , [])
+  
+  // useEffect(function () {
+  //   //everytime the value of changingVar changes, this line runs
+  //   },[changingVar])
+    
+  //   useEffect(function () {
+  //     //everytime the value of changingVar or toDoArray changes, this line runs
+  //     },[changingVar, toDoArray])
+      
+
 
   const addListHandler = (inputText) => {
     let mockToDoArray = [...toDoArray]
@@ -23,7 +35,7 @@ function App() {
     let item = { text: inputText, id: lastItemId + 1 }
     mockToDoArray.push(item);
     setToDoArray(mockToDoArray);
-    console.log('function is working')
+    console.log('addListHandler  is working' )
   }
   
  
