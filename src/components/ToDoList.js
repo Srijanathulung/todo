@@ -1,4 +1,9 @@
 const ToDoList = (props) => {
-    return <div>{props.textProperty}</div>
+    return (
+        <div>
+        <div>{props.textProperty}</div>
+        <button onClick={props.clickDelete}>Delete</button>
+    </div>
+    )
 }
 export default ToDoList;

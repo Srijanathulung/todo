@@ -26,18 +26,31 @@ function App() {
     console.log('function is working')
   }
   
+ 
+  const onDeleteHandler = (index, event) => {
+    console.log('delete button is clicked')
+    let toBeDeletedItem=[...toDoArray]
+    // let toBeDeletedItem=[...mockToDoArray]
+    toBeDeletedItem.splice(index, 1);
+    setToDoArray(toBeDeletedItem);
+
+  }
 
   return (
     <div className="App">
      <label>ToDo List</label>
       <ToDoForm onAddList={(inputText)=>addListHandler(inputText) }/>
-      {toDoArray.map((item) =>
+      {toDoArray.map((item,index) =>
         <ToDoList
           key={item.id}
         textProperty={item.text}
-        idProperty={item.id}
-      />
+          idProperty={item.id}
+          
+        clickDelete={()=>onDeleteHandler(index)}
+        />
+       
       )}
+      
     </div>
   );
 }
